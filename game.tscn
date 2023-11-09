@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://b518pp0tx4udc"]
+
+[ext_resource type="Script" path="res://Game.gd" id="1_bj1u1"]
+[ext_resource type="PackedScene" uid="uid://cpue5bk3yg5k5" path="res://player.tscn" id="2_3rg25"]
+[ext_resource type="AudioStream" uid="uid://ew4hipfnc0yh" path="res://audio/ship-explode.wav" id="3_1ca1f"]
+[ext_resource type="AudioStream" uid="uid://bdqq12lcyyh0w" path="res://audio/ham.mp3" id="3_dm8xs"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_bj1u1")
+
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Hit" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 380.0
+offset_right = 432.0
+offset_bottom = 411.0
+text = "Hit"
+
+[node name="Change Music" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 41.0
+offset_right = 861.0
+offset_bottom = 72.0
+text = "Change Music"
+
+[node name="SFX" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 757.0
+offset_top = 42.0
+offset_right = 793.0
+offset_bottom = 73.0
+text = "SFX"
+
+[node name="Stand" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 382.0
+offset_right = 539.0
+offset_bottom = 413.0
+text = "Stand"
+
+[node name="Surrender" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 384.0
+offset_right = 690.0
+offset_bottom = 415.0
+text = "Surrender"
+
+[node name="Hand" type="Label" parent="."]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 188.0
+offset_right = 605.0
+offset_bottom = 214.0
+text = "Game Over!!!"
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 58.0
+offset_right = 150.0
+offset_bottom = 84.0
+text = "Score: 0"
+
+[node name="Dealer" type="Label" parent="."]
+layout_mode = 0
+offset_left = 938.0
+offset_top = 124.0
+offset_right = 1054.0
+offset_bottom = 150.0
+text = "Dealer Score: 0"
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 224.0
+offset_top = 29.0
+offset_right = 325.0
+offset_bottom = 55.0
+text = "Game Over!!!"
+
+[node name="HandCards" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 0
+offset_left = 349.0
+offset_top = 500.0
+offset_right = 849.0
+offset_bottom = 600.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("2_3rg25")]
+position = Vector2(189, 389)
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1ca1f")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dm8xs")
+autoplay = true
+
+[connection signal="pressed" from="UI/Hit" to="." method="_on_hit_pressed"]
+[connection signal="pressed" from="UI/Change Music" to="." method="_on_change_music_pressed"]
+[connection signal="pressed" from="UI/SFX" to="." method="_on_sfx_pressed"]
+[connection signal="pressed" from="UI/Stand" to="." method="_on_stand_pressed"]
+[connection signal="pressed" from="UI/Surrender" to="." method="_on_surrender_pressed"]
